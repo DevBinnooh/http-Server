@@ -196,7 +196,7 @@ public class HttpdConf {
      * Helper function to see if we've parsed our httpd.conf file properly. Used
      * for debugging purposes.
      */
-    public void testPrint() {
+    public static void testPrint() {
         System.out.println("ServerOwners: " + m_serverName);
         System.out.println("ServerRoot: " + Server_Root);
         System.out.println("DocumentRoot: " + Document_Root);
