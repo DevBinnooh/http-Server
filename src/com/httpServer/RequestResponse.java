@@ -31,8 +31,8 @@ public class RequestResponse {
         String fileName = vars.SCRIPT_FILENAME.replaceAll("\"", "");
         File rFile = new File(fileName);
         if (!rFile.exists() || rFile.isDirectory()) {
-            for (int i = 0; i < HttpdConf.Directory_Index.size(); i++) {
-                rFile = new File(fileName + "/" + HttpdConf.Directory_Index.get(i));
+            for (int i = 0; i < HttpdConf.getDirectory_Index().size(); i++) {
+                rFile = new File(fileName + "/" + HttpdConf.getDirectory_Index().get(i));
                 if (rFile.exists()) {
                     vars.SCRIPT_FILENAME = rFile.getAbsolutePath();
                     break;
@@ -97,7 +97,7 @@ public class RequestResponse {
 
         String response = "HTTP/1.1 " + result + "\r\n"
                 + "Date: " + sDate + "\r\n"
-                + "Server: " + HttpdConf.m_serverName + "\r\n";
+                + "Server: " + HttpdConf.getM_serverName() + "\r\n";
         if (contentLenght > 0) {
             response += "Content-Length: " + contentLenght + "\r\n";
         }

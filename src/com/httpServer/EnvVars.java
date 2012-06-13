@@ -35,8 +35,8 @@ public class EnvVars {
         DOCUMENT_ROOT = HttpdConf.Document_Root;
         PATH = HttpdConf.Server_Root;
         SERVER_ADMIN = HttpdConf.Server_Admin;
-        SERVER_NAME = HttpdConf.m_serverName;
-        SERVER_PORT = HttpdConf.Port.toString();
+        SERVER_NAME = HttpdConf.getM_serverName();
+        SERVER_PORT = HttpdConf.getPort().toString();
     }
 
     String[] GetEnv() {
