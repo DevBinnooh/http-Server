@@ -18,6 +18,7 @@ public class Main {
         final String path = "src/config/httpd.conf";
         final String MIME_path = "src/config/mime.types";
         HttpdConf serverConf = HttpdConf.getInstance();
+        
         if (!serverConf.readHttpd(path)) {
             return;//TODO report error and print absolute path
         }
@@ -33,8 +34,7 @@ public class Main {
         HttpdConf.testPrint();
 
         while (true) {
-            try {
-                
+            try {  
                 Socket accept = serversocket.accept();
                 System.out.println("Client connected on port: " + HttpdConf.getPort() + "\n");
                 new Thread(new HttpServer(accept)).start();

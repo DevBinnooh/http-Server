@@ -97,11 +97,11 @@ public class HttpdConf {
                 val2 = null;
             }
             if (key.equals("ServerRoot")) {
-                Server_Root = val1.replaceAll("\"", "");
+                setServer_Root(val1.replaceAll("\"", ""));
             } else if (key.equals("ServerAdmin")) {
-                Server_Admin = val1;
+                setServer_Admin(val1);
             } else if (key.equals("DocumentRoot")) {
-                Document_Root = val1.replaceAll("\"", "");
+                setDocument_Root(val1.replaceAll("\"", ""));
             } else if (key.equals("Listen")) {
                 setPort((Integer) Integer.parseInt(val1));
             } else if (key.equals("LogFile")) {
@@ -205,8 +205,8 @@ public class HttpdConf {
      */
     public static void testPrint() {
         System.out.println("ServerOwners: " + getM_serverName());
-        System.out.println("ServerRoot: " + Server_Root);
-        System.out.println("DocumentRoot: " + Document_Root);
+        System.out.println("ServerRoot: " + getServer_Root());
+        System.out.println("DocumentRoot: " + getDocument_Root());
         System.out.println("ListenPort: " + getPort());
         System.out.println("LogFile: " + getLog_File());
     }
@@ -224,6 +224,48 @@ public class HttpdConf {
         Log_File = aLog_File;
     }
 
+    
+    /**
+     * @return the Document_Root
+     */
+    public static String getDocument_Root() {
+        return Document_Root;
+    }
+
+    /**
+     * @param aDocument_Root the Document_Root to set
+     */
+    public static void setDocument_Root(String aDocument_Root) {
+        Document_Root = aDocument_Root;
+    }
+
+    /**
+     * @return the Server_Root
+     */
+    public static String getServer_Root() {
+        return Server_Root;
+    }
+
+    /**
+     * @param aServer_Root the Server_Root to set
+     */
+    public static void setServer_Root(String aServer_Root) {
+        Server_Root = aServer_Root;
+    }
+
+    /**
+     * @return the Server_Admin
+     */
+    public static String getServer_Admin() {
+        return Server_Admin;
+    }
+
+    /**
+     * @param aServer_Admin the Server_Admin to set
+     */
+    public static void setServer_Admin(String aServer_Admin) {
+        Server_Admin = aServer_Admin;
+    }
     /**
      * @return the Uploads
      */

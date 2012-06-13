@@ -54,11 +54,11 @@ public class RequestResolver {
             String[] qSplit = request.split("\\?");
             if(qSplit.length>1){
                 m_vars.QUERY_STRING = qSplit[1];
-                m_vars.SCRIPT_FILENAME = HttpdConf.Document_Root + qSplit[0];
+                m_vars.SCRIPT_FILENAME = m_vars.DOCUMENT_ROOT + qSplit[0];
                 m_vars.SCRIPT_NAME = qSplit[0];
             }
             else{
-                m_vars.SCRIPT_FILENAME = HttpdConf.Document_Root + request;
+                m_vars.SCRIPT_FILENAME = m_vars.DOCUMENT_ROOT + request;
                 m_vars.SCRIPT_NAME = request;
             }
 

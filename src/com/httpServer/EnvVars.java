@@ -32,9 +32,9 @@ public class EnvVars {
     public String SERVER_SOFTWARE;  //The server software you're using (e.g. Apache 1.3)
 
     public EnvVars() {
-        DOCUMENT_ROOT = HttpdConf.Document_Root;
-        PATH = HttpdConf.Server_Root;
-        SERVER_ADMIN = HttpdConf.Server_Admin;
+        DOCUMENT_ROOT = HttpdConf.getDocument_Root();
+        PATH = HttpdConf.getServer_Root();
+        SERVER_ADMIN = HttpdConf.getServer_Admin();
         SERVER_NAME = HttpdConf.getM_serverName();
         SERVER_PORT = HttpdConf.getPort().toString();
     }
