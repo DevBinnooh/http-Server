@@ -56,8 +56,8 @@ class HtmlHandler {
         }
 
         long contentLegth = rFile.length();
-        String mimeType = new MimetypesFileTypeMap().getContentType(rFile);
-        if (!(mimeType.equals(HttpdConf.GetType(mimeType)))) {
+        String mimeType = HttpdConf.getTypemm(rFile.getAbsolutePath());
+        if (!(mimeType.equals("application/octet-stream")) && null != mimeType) {
             repsonseHeader = RequestResponse.GenerateResponseHeader(200, mimeType, contentLegth);
         } else {
             repsonseHeader = RequestResponse.GenerateResponseHeader(404, mimeType, 0);

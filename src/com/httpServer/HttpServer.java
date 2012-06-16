@@ -28,6 +28,6 @@ class HttpServer implements Runnable {
         System.out.println("Client Method: " + client.GetEnvVars().REQUEST_METHOD
                 + "\nRequested URI: " + client.GetEnvVars().REQUEST_URI
                 + "\nClient Agent: " + client.GetEnvVars().HTTP_USER_AGENT);
-
+        return;
     }
 }

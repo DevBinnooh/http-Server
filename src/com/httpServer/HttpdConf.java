@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.activation.MimetypesFileTypeMap;
 
 public class HttpdConf {
 
@@ -36,11 +37,17 @@ public class HttpdConf {
     private static String Default_Icon = null;
     private final static String m_serverName = "DevBinnooh & Bader A";
     private static TreeMap<String, String> m_types = new TreeMap<String, String>();
+    private static MimetypesFileTypeMap mm_types ;
     private static HttpdConf instance;
     /**
      * Default constructor to reset your variables and data structures.
      */
     private HttpdConf() {
+        try {
+            mm_types = new MimetypesFileTypeMap("src/config/mime.types");
+        } catch (IOException ex) {
+            Logger.getLogger(HttpdConf.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public synchronized static  HttpdConf getInstance (){
@@ -114,7 +121,7 @@ public class HttpdConf {
                 Collections.addAll(getDirectory_Index(), elements);
             } else if (key.equals("Listen")) {
                 setPort(Integer.getInteger(val1));
-            } else if (key.equals("MaxThreads")) {
+            } else if (key.equals("MaxThread")) {
                 setMax_Thread(Integer.parseInt(val1));
             } else if (key.equals("KeepAlive")) {
                 setPersistent_Connection(val1);
@@ -184,8 +191,11 @@ public class HttpdConf {
         }
 
         return "application/octet-stream";
-
     }
+    
+    public static String getTypemm(String path){
+        return mm_types.getContentType(path);
+        }
 
     /**
      * Helper function to determine whether the name of a file or directory is an

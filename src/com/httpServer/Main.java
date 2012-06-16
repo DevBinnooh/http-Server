@@ -9,6 +9,9 @@ package com.httpServer;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,17 +35,18 @@ public class Main {
             return;
         }
         HttpdConf.testPrint();
-
+        ExecutorService cl = Executors.newFixedThreadPool(HttpdConf.getMax_Thread());
         while (true) {
             try {  
                 Socket accept = serversocket.accept();
                 System.out.println("Client connected on port: " + HttpdConf.getPort() + "\n");
-                new Thread(new HttpServer(accept)).start();
+                final Thread clientThread = new Thread(new HttpServer(accept));
+                Future<?> result = cl.submit(clientThread); //TODO
             } catch (Exception e) {
                 Logger log = Logger.getLogger(HttpdConf.getLog_File());
                 log.log(Level.WARNING, "httpServer: Client Can not be connected to {0}", HttpdConf.getPort());
+                cl.shutdownNow();
             }
-
         }
     }
 }
